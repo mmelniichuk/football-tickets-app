@@ -31,11 +31,11 @@ public class InjectController {
     @GetMapping
     public String injectData() {
         Role adminRole = new Role();
-        adminRole.setRoleName(RoleName.ADMIN);
+        adminRole.setRoleName(RoleName.ROLE_ADMIN);
         roleService.add(adminRole);
 
         Role userRole = new Role();
-        userRole.setRoleName(RoleName.USER);
+        userRole.setRoleName(RoleName.ROLE_USER);
         roleService.add(userRole);
 
         authenticationService.register("mariia@gmail.com", "12345678");
@@ -43,7 +43,7 @@ public class InjectController {
         User user = new User();
         user.setEmail("anna_admin@i.ua");
         user.setPassword("admin123");
-        user.setRoles(Set.of(roleService.getRoleByName(RoleName.ADMIN)));
+        user.setRoles(Set.of(roleService.getRoleByName(RoleName.ROLE_ADMIN)));
         userService.add(user);
         log.info("Data was successfully inject!");
         return "Data was successfully inject!";
